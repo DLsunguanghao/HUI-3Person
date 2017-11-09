@@ -16,4 +16,9 @@ public interface SysRoleService {
     SysRole findById(Integer id);
 
     int deleteSysRole(Integer id);
+
+    //模糊查询
+    List<SysRole> findSysRole(String name);
+
+    int updataSysRole(SysRole sysRole);
 }

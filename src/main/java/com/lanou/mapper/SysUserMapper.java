@@ -1,6 +1,7 @@
 package com.lanou.mapper;
 
 import com.lanou.bean.SysUser;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
 
     List<SysUser> findAllSyeuser();
+
+    SysUser findUserById(@Param("id") Integer id);
 }

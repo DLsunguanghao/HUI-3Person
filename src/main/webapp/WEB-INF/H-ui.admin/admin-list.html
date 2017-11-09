@@ -36,8 +36,8 @@
         -
         <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax"
                class="input-text Wdate" style="width:120px;">
-        <input type="text" class="input-text" style="width:250px" placeholder="输入管理员名称"  name="">
-        <button type="submit" class="btn btn-success"  name="">
+        <input type="text" class="input-text" style="width:250px" id="admName" placeholder="输入管理员名称"  name="">
+        <button type="submit" class="btn btn-success" onclick="seek()"  name="">
             <i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
     </div>
     <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l">
@@ -198,35 +198,35 @@
 
         $("<td></td>").html("<p>"+ result.createTime+"</p>").appendTo(tr);
 
-        $("<td></td>").html("<p>"+ result.createId+"</p>").appendTo(tr);
+        $("<td></td>").html("<p>"+ result.sysUser.username+"</p>").appendTo(tr);
 
         $("<td></td>").html("<p>"+ result.sort+"</p>").appendTo(tr);
 
-        $("<td></td>").html("<p>"+ result.status+"</p>").appendTo(tr);
+        if (result.status == 1) {
+            $("<td></td>").html("<p>" + "显示" + "</p>").appendTo(tr);
+        }else if(result.status == 2) {
+            $("<td></td>").html("<p>" + "隐藏" + "</p>").appendTo(tr);
+        }
 
         var td = $("<td></td>").appendTo(tr)
 
         $("<a title='编辑' href='javascript:;'class ='ml-5' style='text-decoration:none'> <i class='Hui-iconfont'>&#xe6df;</i>" +
                 " </a>").appendTo(td).click(editor).attr("findNumber",result.id);
-        $("<a title='删除' href='javascript:;'onclick='admin_del(this,'1')' class='ml-5' style='text-decoration:none'> <i class='Hui-iconfont'>&#xe6e2;</i> " +
+        $("<a title='删除' href='javascript:;'class='ml-5' style='text-decoration:none'> <i class='Hui-iconfont'>&#xe6e2;</i> " +
                 "</a>").appendTo(td).click(del).attr("findNumber",result.id);
 
         $("#sys_role").append(tr);
-
-//        <a title="删除" href="javascript:;"
-//        onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none">
-//                <i class="Hui-iconfont">&#xe6e2;</i>
-//        </a>
     }
 
     //编辑
     function editor() {
         var num = $(this).attr("findNumber");
+        alert(num)
         $.ajax({
             type:"post",
-            url:"/",
+            url:"/updataSysRole",
             data:{
-                Id:num
+                id:num
             },
             success:function (result) {
                 window.location.href = "/admin-list";
@@ -237,7 +237,6 @@
     //删除
     function del() {
         var num = $(this).attr("findNumber");
-        alert(num)
         $.ajax({
             type:"post",
             url:"/delete",
@@ -246,6 +245,24 @@
             },
             success:function (result) {
                 window.location.href = "/admin-list"
+            }
+        })
+    }
+
+    //模糊查询
+    function seek() {
+        $.ajax({
+            type:"post",
+            url:"/findByAdminName",
+            data:{
+                adminName:$("#admName").val()
+            },
+            success:function (result) {
+                console.log(result)
+                $("#sys_role").children().remove();
+                for (var i = 0;i < result.data.length;i++) {
+                    addNewTr(result.data[i])
+                }
             }
         })
     }

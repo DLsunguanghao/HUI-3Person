@@ -31,11 +31,24 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public SysRole findById(Integer id) {
+
+//        System.out.println("findById(id):---"+mapper.findById(id));
+
         return mapper.findById(id);
     }
 
     @Override
     public int deleteSysRole(Integer id) {
         return mapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<SysRole> findSysRole(String name) {
+        return mapper.findByName(name);
+    }
+
+    @Override
+    public int updataSysRole(SysRole sysRole) {
+        return mapper.updateByPrimaryKeySelective(sysRole);
     }
 }

@@ -21,6 +21,32 @@ public class SysRole {
 
     private String remark;
 
+    private SysUser sysUser;
+
+    @Override
+    public String toString() {
+        return "SysRole{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                ", sort=" + sort +
+                ", createTime=" + createTime +
+                ", createId=" + createId +
+                ", updateTime=" + updateTime +
+                ", updateId=" + updateId +
+                ", remark='" + remark + '\'' +
+                ", sysUser=" + sysUser +
+                '}';
+    }
+
+    public SysUser getSysUser() {
+        return sysUser;
+    }
+
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -93,18 +119,4 @@ public class SysRole {
         this.remark = remark == null ? null : remark.trim();
     }
 
-    @Override
-    public String toString() {
-        return "SysRole{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", status=" + status +
-                ", sort=" + sort +
-                ", createTime=" + createTime +
-                ", createId=" + createId +
-                ", updateTime=" + updateTime +
-                ", updateId=" + updateId +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
 }

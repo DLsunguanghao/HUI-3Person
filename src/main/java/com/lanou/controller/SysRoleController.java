@@ -64,6 +64,7 @@ public class SysRoleController {
         user.setCreateTime(new Date());
         user.setRemark(remark);
         user.setTel(phone);
+        user.setRealname(Adname);
 
         int i = service.addSysRole(role);
         if (i > 0){
@@ -92,7 +93,42 @@ public class SysRoleController {
     }
 
 
+    //模糊查询
+    @ResponseBody
+    @RequestMapping(value = "/findByAdminName",method = RequestMethod.POST)
+    public AjaxResult findByAdminName(@RequestParam("adminName")String name){
 
+        List<SysRole> sysRole = service.findSysRole(name);
+
+//        System.out.println("sysRole:---"+sysRole);
+        return new AjaxResult(sysRole);
+    }
+
+    //编辑(显示/隐藏)
+    @ResponseBody
+    @RequestMapping(value = "/updataSysRole",method = RequestMethod.POST)
+    public AjaxResult updataSysRole(@RequestParam("id")Integer id){
+
+        SysRole byId = service.findById(id);
+
+//        System.out.println("byI:---"+byId.getStatus());
+
+        if (byId.getStatus() == 1) {
+            byId.setStatus(2);
+            int i = service.updataSysRole(byId);
+            if (i >0){
+                System.out.println("更新成功");
+            }
+        }else if (byId.getStatus() ==2){
+
+            byId.setStatus(1);
+            int i = service.updataSysRole(byId);
+            if (i >0){
+                System.out.println("更新成功");
+            }
+        }
+        return new AjaxResult(6);
+    }
 
 
 }

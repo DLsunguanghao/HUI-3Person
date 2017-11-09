@@ -10,6 +10,8 @@
     <result column="create_id" jdbcType="INTEGER" property="createId" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="update_id" jdbcType="INTEGER" property="updateId" />
+    <association property="sysUser" column="create_id"
+                 select="com.lanou.mapper.SysUserMapper.selectByPrimaryKey"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.lanou.bean.SysRole">
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
@@ -38,7 +40,18 @@
   <select id="findById" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List"/>
-    FROM sys_role WHERE SId =#{id}
+    FROM sys_role WHERE id = #{SId}
+  </select>
+
+  <select id="findByName" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM sys_role
+    <where>
+      <if test="name!=null">
+        AND name LIKE CONCAT('%',#{name},'%')
+      </if>
+    </where>
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
