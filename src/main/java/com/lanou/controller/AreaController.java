@@ -24,20 +24,7 @@ public class AreaController {
 
         System.out.println(service.findAllArea());
 
-        System.out.println(1);
-        System.out.println(2);
 
-        System.out.println(3);
-        System.out.println(4);
-
-        System.out.println(5);
-        System.out.println(6);
-
-        Integer b = 333;
-        Collection c = new ArrayList();
-
-        System.out.println(7);
-        System.out.println(8);
 
         return service.findAllArea();
     }
