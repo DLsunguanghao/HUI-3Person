@@ -1,6 +1,7 @@
 package com.lanou.mapper;
 
 import com.lanou.bean.SysRole;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface SysRoleMapper {
 
 
     List<SysRole> findAllSysRole();
+
+    SysRole findById(@Param("SId")Integer id);
 }

@@ -237,11 +237,12 @@
     //删除
     function del() {
         var num = $(this).attr("findNumber");
+        alert(num)
         $.ajax({
             type:"post",
-            url:"/",
+            url:"/delete",
             data:{
-                Id:num
+                SysRoleId:num
             },
             success:function (result) {
                 window.location.href = "/admin-list"

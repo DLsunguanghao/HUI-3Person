@@ -5,6 +5,7 @@ import com.lanou.bean.SysUser;
 import com.lanou.service.SysRoleService;
 import com.lanou.service.SysUserService;
 import com.lanou.utils.AjaxResult;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,6 +55,7 @@ public class SysRoleController {
         role.setCreateId(1);
         role.setCreateTime(new Date());
         role.setStatus(1);
+        role.setRemark(remark);
 
         SysUser user = new SysUser();
         user.setUsername(name);
@@ -75,6 +77,21 @@ public class SysRoleController {
 
         return new AjaxResult(6);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public AjaxResult deleteSysRole(@RequestParam("SysRoleId")Integer id){
+
+        int i = service.deleteSysRole(id);
+
+        if (i > 0){
+            System.out.println("删除成功");
+        }
+
+        return new AjaxResult(6);
+    }
+
+
 
 
 

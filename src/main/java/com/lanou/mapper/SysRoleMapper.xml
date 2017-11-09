@@ -35,10 +35,17 @@
       FROM sys_role
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="findById" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM sys_role WHERE SId =#{id}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.lanou.bean.SysRole">
     insert into sys_role (id, name, status, 
       sort, create_time, create_id, 

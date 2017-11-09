@@ -12,4 +12,8 @@ public interface SysRoleService {
     List<SysRole> findAllSyeRole();
 
     int  addSysRole(SysRole sysRole);
+
+    SysRole findById(Integer id);
+
+    int deleteSysRole(Integer id);
 }

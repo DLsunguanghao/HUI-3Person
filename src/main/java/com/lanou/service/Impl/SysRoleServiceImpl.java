@@ -28,4 +28,14 @@ public class SysRoleServiceImpl implements SysRoleService {
     public int addSysRole(SysRole sysRole) {
         return mapper.insertSelective(sysRole);
     }
+
+    @Override
+    public SysRole findById(Integer id) {
+        return mapper.findById(id);
+    }
+
+    @Override
+    public int deleteSysRole(Integer id) {
+        return mapper.deleteByPrimaryKey(id);
+    }
 }
