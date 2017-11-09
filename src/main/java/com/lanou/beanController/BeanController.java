@@ -28,9 +28,9 @@ public class  BeanController {
      * 权限管理跳转
      */
     //菜单管理
-    @RequestMapping(value = "/product-brand")
+    @RequestMapping(value = "/_menu")
     public String produceB(){
-        return "/product-brand";
+        return "/_menu";
     }
     //角色管理(管理员)
     @RequestMapping(value = "/admin-list")
@@ -38,10 +38,10 @@ public class  BeanController {
         return "/admin-list";
     }
 
-    //分类管理-add(没有使用)
-    @RequestMapping(value = "/product-category-add")
+    //分类管理-add
+    @RequestMapping(value = "/addRole")
     public String produceCA(){
-        return "/product-category-add";
+        return "/admin-add";
     }
 
     //用户管理
