@@ -114,4 +114,21 @@
       score = #{score,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--查询所有废品-->
+  <select id="findAllScrap" resultMap="BaseResultMap">
+    SELECT *FROM scrap;
+  </select>
+  <!--//通过废品编码查询废品-->
+  <select id="findScrapByScrapcode" resultMap="BaseResultMap">
+    SELECT *FROM scrap WHERE scrap_code=#{scrapcode}
+  </select>
+
+  <!--//通过废品名称查询废品-->
+  <select id="findScrapByScrapname" resultMap="BaseResultMap">
+    SELECT *FROM scrap WHERE scrap_name=#{scrapname}
+  </select>
+  <!--通过id删除对应的scrap-->
+  <delete id="deleteScrap">
+    DELETE FROM scrap WHERE id=#{deleteId}
+  </delete>
 </mapper>

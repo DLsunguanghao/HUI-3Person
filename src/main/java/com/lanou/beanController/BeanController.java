@@ -49,6 +49,17 @@ public class  BeanController {
     public String produceL(){
         return "/user-list";
     }
+    //废品管理
+    //查找所有废品
+    @RequestMapping(value = "/picture-list")
+    public String picturelist(){
+        return "picture-list";
+    }
+    //添加废品
+    @RequestMapping(value = "/picture-add")
+    public String pictureadd(){
+        return "picture-add";
+    }
 
 
 
