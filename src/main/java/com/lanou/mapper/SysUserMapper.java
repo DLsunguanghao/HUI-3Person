@@ -21,4 +21,9 @@ public interface SysUserMapper {
     List<SysUser> findAllSyeuser();
 
     SysUser findUserById(@Param("id") Integer id);
+
+    //查询三种情况
+    List<SysUser> findSysUserByNameAndEmailAndTel(@Param("name")String name,
+                                                  @Param("email")String email,
+                                                  @Param("tel")String tel);
 }

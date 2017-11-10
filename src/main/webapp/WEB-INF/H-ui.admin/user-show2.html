@@ -72,12 +72,13 @@
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" id="adminRo" name="adminRole" size="1">
-				<option value="0">超级管理员</option>
-				<option value="1">总编</option>
-				<option value="2">栏目主辑</option>
-				<option value="3">栏目编辑</option>
-			</select>
+			<!--<select class="select" id="adminRo" name="adminRole" size="1">-->
+				<!--<option value="0">超级管理员</option>-->
+				<!--<option value="1">总编</option>-->
+				<!--<option value="2">栏目主辑</option>-->
+				<!--<option value="3">栏目编辑</option>-->
+			<!--</select>-->
+			<input type="text" class="input-text" placeholder="职位" name="email" id="roleName">
 			</span> </div>
 	</div>
 	<div class="row cl">
@@ -165,28 +166,44 @@ $(function(){
 	});
 });
 
-	function add() {
-		alert(7777)
+	function echo() {
 		$.ajax({
 			type:"post",
-			url:"/addUser",
+			url:"/findUser",
 			data:{
-				adminName:$("#adminName").val(),
-				password:$("#password").val(),
-				gender:$("input[type='radio']:checked").val(),
-				phone:$("#phone").val(),
-				email:$("#email").val(),
-				RName:$("#adminRo option:selected").text(),
-				input:$("#input").val()
 			},
-
 			success:function (result) {
-				console.log(result)
-
-				window.location.href = "/user-list"
+				$("#adminName").val(result.data.username),
+				$("#password").val(result.data.password),
+				$("#phone").val(result.data.tel),
+				$("#email").val(result.data.email),
+				$("#roleName").val(result.data.realname),
+				$("#input").val(result.data.remark)
 			}
 		})
 	}
+	echo();
+
+function add() {
+	$.ajax({
+		type:"post",
+		url:"/editor",
+		data:{
+			adminName:$("#adminName").val(),
+			password:$("#password").val(),
+			gender:$("input[type='radio']:checked").val(),
+			phone:$("#phone").val(),
+			email:$("#email").val(),
+			RName:$("#roleName").val(),
+			input:$("#input").val()
+		},
+
+		success:function (result) {
+			console.log(result)
+			window.location.href = "/user-list"
+		}
+	})
+}
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
 </body>

@@ -32,13 +32,15 @@ public class  BeanController {
     public String produceB(){
         return "/_menu";
     }
+
+
     //角色管理(管理员)
     @RequestMapping(value = "/admin-list")
     public String produceC(){
         return "/admin-list";
     }
 
-    //分类管理-add
+    //角色管理-add
     @RequestMapping(value = "/addRole")
     public String produceCA(){
         return "/admin-add";
@@ -49,6 +51,16 @@ public class  BeanController {
     public String produceL(){
         return "/user-list";
     }
+    //用户管理-add
+    @RequestMapping(value = "/user-add")
+    public String UserAdd(){
+        return "/user-add";
+    }
+    @RequestMapping(value = "/user-show")
+    public String UserShow(){
+        return "/user-show2";
+    }
+
 
 
 

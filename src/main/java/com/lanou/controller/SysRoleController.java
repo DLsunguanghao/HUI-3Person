@@ -39,7 +39,7 @@ public class SysRoleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addAR",method = RequestMethod.POST)
+    @RequestMapping(value = "/",method = RequestMethod.POST)
     public AjaxResult addSysRole(@RequestParam("RName")String Adname,
                                  @RequestParam("adminName")String name,
                                  @RequestParam("password")String pwd,
@@ -48,7 +48,7 @@ public class SysRoleController {
                                  @RequestParam("email")String email,
                                  @RequestParam("input")String remark){
 
-        System.out.println(Adname+name+pwd+gender+phone+email+remark);
+//        System.out.println(Adname+name+pwd+gender+phone+email+remark);
 
         SysRole role = new SysRole();
         role.setName(Adname);
