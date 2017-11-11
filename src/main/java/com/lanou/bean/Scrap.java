@@ -55,6 +55,19 @@ public class Scrap {
         this.unit = unit == null ? null : unit.trim();
     }
 
+    @Override
+    public String toString() {
+        return "Scrap{" +
+                "id=" + id +
+                ", scrapCode='" + scrapCode + '\'' +
+                ", scrapName='" + scrapName + '\'' +
+                ", category='" + category + '\'' +
+                ", unit='" + unit + '\'' +
+                ", price=" + price +
+                ", score=" + score +
+                '}';
+    }
+
     public Integer getPrice() {
         return price;
     }
