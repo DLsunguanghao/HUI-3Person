@@ -28,10 +28,21 @@ public class  BeanController {
      * 权限管理跳转
      */
     //菜单管理
-    @RequestMapping(value = "/_menu")
+    @RequestMapping(value = "/menu-list")
     public String produceB(){
-        return "/_menu";
+        return "/meun-list";
     }
+    //菜单添加
+    @RequestMapping(value = "/menu-add")
+    public String addMenu(){
+        return "/menu-add";
+    }
+    //菜单回显
+    @RequestMapping(value = "/menu-show")
+    public String echoMenu(){
+        return "/menu-show";
+    }
+
 
 
     //角色管理(管理员)
@@ -39,7 +50,6 @@ public class  BeanController {
     public String produceC(){
         return "/admin-list";
     }
-
     //角色管理-add
     @RequestMapping(value = "/addRole")
     public String produceCA(){
@@ -56,6 +66,7 @@ public class  BeanController {
     public String UserAdd(){
         return "/user-add";
     }
+    //用户管理-回显
     @RequestMapping(value = "/user-show")
     public String UserShow(){
         return "/user-show2";

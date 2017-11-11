@@ -31,7 +31,7 @@
     delete from sys_menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lanou.bean.SysMenu">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.lanou.bean.SysMenu">
     insert into sys_menu (id, parent_id, icon, 
       name, urlkey, url, 
       status, type, sort, 
@@ -43,7 +43,7 @@
       #{level,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.lanou.bean.SysMenu">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.lanou.bean.SysMenu">
     insert into sys_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -196,4 +196,23 @@
       update_id = #{updateId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="findAllSysMenu" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM sys_menu
+  </select>
+
+  <select id="findMenuById" resultType="com.lanou.bean.SysMenu">
+  SELECT
+   <include refid="Base_Column_List"/>
+    FROM sys_menu WHERE id = #{id}
+  </select>
+
+  <select id="findMenuByFatherName" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM sys_menu WHERE name = #{ParentName}
+  </select>
+
 </mapper>
