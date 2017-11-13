@@ -145,7 +145,7 @@ public class SysMenuController {
     //用于显示父模块
     @ResponseBody
     @RequestMapping(value = "/ParentName")
-    public AjaxResult returenParentMenu(HttpServletRequest request){
+    public AjaxResult returnParentMenu(HttpServletRequest request){
 
         SysMenu sysMenu = (SysMenu) request.getSession().getAttribute("Menu");
 
